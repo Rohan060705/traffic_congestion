@@ -1,0 +1,1384 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_97b0b93138d31f6d0f9a8b2523863622 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+</head>
+<body>
+    
+    
+<div style="position:fixed;bottom:24px;left:24px;z-index:1000;
+     background:#1a1a18;padding:12px 16px;border-radius:10px;
+     border:1px solid #444;font-family:sans-serif;min-width:190px">
+  <div style="font-size:13px;font-weight:700;color:#fff;margin-bottom:8px">
+    Chicago Loop — live traffic
+  </div>
+  <div style="font-size:12px;color:#aaa;margin:5px 0">
+    <span style="color:#4ade80;font-size:18px">&#9632;</span>
+    Free flow &nbsp;<span style="color:#555">25+ mph</span>
+  </div>
+  <div style="font-size:12px;color:#aaa;margin:5px 0">
+    <span style="color:#facc15;font-size:18px">&#9632;</span>
+    Moderate &nbsp;<span style="color:#555">18–25 mph</span>
+  </div>
+  <div style="font-size:12px;color:#aaa;margin:5px 0">
+    <span style="color:#f87171;font-size:18px">&#9632;</span>
+    Congested &nbsp;<span style="color:#555">under 18 mph</span>
+  </div>
+  <div style="font-size:11px;color:#555;margin-top:10px;border-top:1px solid #333;padding-top:8px">
+    19 real road segments · Chicago open data
+  </div>
+</div>
+    
+            <div class="folium-map" id="map_97b0b93138d31f6d0f9a8b2523863622" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_97b0b93138d31f6d0f9a8b2523863622 = L.map(
+                "map_97b0b93138d31f6d0f9a8b2523863622",
+                {
+                    center: [41.886, -87.628],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 15,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_ad58523140e0329dc8f5d56fc49d5b34 = L.tileLayer(
+                "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 20,
+  "maxNativeZoom": 20,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors \u0026copy; \u003ca href=\"https://carto.com/attributions\"\u003eCARTO\u003c/a\u003e",
+  "subdomains": "abcd",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_ad58523140e0329dc8f5d56fc49d5b34.addTo(map_97b0b93138d31f6d0f9a8b2523863622);
+        
+    
+            map_97b0b93138d31f6d0f9a8b2523863622.fitBounds(
+                [[41.875, -87.64], [41.9, -87.62]],
+                {}
+            );
+        
+    
+            var poly_line_729c0e753f645cd9b270a89cc2638639 = L.polyline(
+                [[41.875777, -87.624123], [41.88447407, -87.62426376]],
+                {"bubblingMouseEvents": true, "color": "#facc15", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#facc15", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.95, "smoothFactor": 1.0, "stroke": true, "weight": 7}
+            ).addTo(map_97b0b93138d31f6d0f9a8b2523863622);
+        
+    
+            poly_line_729c0e753f645cd9b270a89cc2638639.bindTooltip(
+                `<div>
+                     <b style='font-size:13px'>Michigan</b><br>Congress → Randolph<br>Speed: <b>20 mph</b><br>Status: <b style='color:#facc15'>Moderate</b>
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_bc1f05102f7ea41dbead50ceb3090fd6 = L.circleMarker(
+                [41.875777, -87.624123],
+                {"bubblingMouseEvents": true, "color": "#111", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#facc15", "fillOpacity": 1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1.5}
+            ).addTo(map_97b0b93138d31f6d0f9a8b2523863622);
+        
+    
+            circle_marker_bc1f05102f7ea41dbead50ceb3090fd6.bindTooltip(
+                `<div>
+                     <b>Michigan</b> @ Congress<br>20 mph — Moderate
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_1d68bd51d58e78643cb4377e63af3b72 = L.circleMarker(
+                [41.88447407, -87.62426376],
+                {"bubblingMouseEvents": true, "color": "#111", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#facc15", "fillOpacity": 1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1.5}
+            ).addTo(map_97b0b93138d31f6d0f9a8b2523863622);
+        
+    
+            circle_marker_1d68bd51d58e78643cb4377e63af3b72.bindTooltip(
+                `<div>
+                     <b>Michigan</b> @ Randolph<br>20 mph — Moderate
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_d3247e295e1134d25b8f23002930748e = L.marker(
+                [41.880125535000005, -87.62419338000001],
+                {
+}
+            ).addTo(map_97b0b93138d31f6d0f9a8b2523863622);
+        
+    
+            var div_icon_421b108efc1e38c636b56ad86d470cd2 = L.divIcon({
+  "html": "\u003cdiv style=\"\n                font-size:9px;font-weight:700;color:#fff;\n                white-space:nowrap;pointer-events:none;\n                text-shadow:0 0 4px #000,0 0 4px #000,0 0 4px #000;\"\u003e\n                Michigan\n            \u003c/div\u003e",
+  "iconSize": [90, 16],
+  "iconAnchor": [45, -6],
+  "className": "empty",
+});
+        
+    
+                marker_d3247e295e1134d25b8f23002930748e.setIcon(div_icon_421b108efc1e38c636b56ad86d470cd2);
+            
+    
+            var poly_line_d94fe77b994b4881f82b0a9c64846088 = L.polyline(
+                [[41.88447407, -87.62465], [41.875777, -87.624605]],
+                {"bubblingMouseEvents": true, "color": "#f87171", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#f87171", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.95, "smoothFactor": 1.0, "stroke": true, "weight": 7}
+            ).addTo(map_97b0b93138d31f6d0f9a8b2523863622);
+        
+    
+            poly_line_d94fe77b994b4881f82b0a9c64846088.bindTooltip(
+                `<div>
+                     <b style='font-size:13px'>Michigan</b><br>Randolph → Congress<br>Speed: <b>17 mph</b><br>Status: <b style='color:#f87171'>Congested</b>
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_8354b43464f98ea8379f5b0f33f9d570 = L.circleMarker(
+                [41.88447407, -87.62465],
+                {"bubblingMouseEvents": true, "color": "#111", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#f87171", "fillOpacity": 1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1.5}
+            ).addTo(map_97b0b93138d31f6d0f9a8b2523863622);
+        
+    
+            circle_marker_8354b43464f98ea8379f5b0f33f9d570.bindTooltip(
+                `<div>
+                     <b>Michigan</b> @ Randolph<br>17 mph — Congested
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_15800c9161843184651cb5bddec3276e = L.circleMarker(
+                [41.875777, -87.624605],
+                {"bubblingMouseEvents": true, "color": "#111", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#f87171", "fillOpacity": 1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1.5}
+            ).addTo(map_97b0b93138d31f6d0f9a8b2523863622);
+        
+    
+            circle_marker_15800c9161843184651cb5bddec3276e.bindTooltip(
+                `<div>
+                     <b>Michigan</b> @ Congress<br>17 mph — Congested
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_bf5660f34109743b3dc18c04a12afc94 = L.marker(
+                [41.880125535000005, -87.6246275],
+                {
+}
+            ).addTo(map_97b0b93138d31f6d0f9a8b2523863622);
+        
+    
+            var div_icon_b4b9f45b73279b94a932d7d78ea16561 = L.divIcon({
+  "html": "\u003cdiv style=\"\n                font-size:9px;font-weight:700;color:#fff;\n                white-space:nowrap;pointer-events:none;\n                text-shadow:0 0 4px #000,0 0 4px #000,0 0 4px #000;\"\u003e\n                Michigan\n            \u003c/div\u003e",
+  "iconSize": [90, 16],
+  "iconAnchor": [45, -6],
+  "className": "empty",
+});
+        
+    
+                marker_bf5660f34109743b3dc18c04a12afc94.setIcon(div_icon_b4b9f45b73279b94a932d7d78ea16561);
+            
+    
+            var poly_line_de972b6633eb74bff801fd55046dc067 = L.polyline(
+                [[41.8758738945, -87.624251783], [41.8757590907, -87.6276277176]],
+                {"bubblingMouseEvents": true, "color": "#facc15", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#facc15", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.95, "smoothFactor": 1.0, "stroke": true, "weight": 7}
+            ).addTo(map_97b0b93138d31f6d0f9a8b2523863622);
+        
+    
+            poly_line_de972b6633eb74bff801fd55046dc067.bindTooltip(
+                `<div>
+                     <b style='font-size:13px'>Congress</b><br>Michigan → State<br>Speed: <b>19 mph</b><br>Status: <b style='color:#facc15'>Moderate</b>
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_5f47018e50216ca306fa3cd9f0b53976 = L.circleMarker(
+                [41.8758738945, -87.624251783],
+                {"bubblingMouseEvents": true, "color": "#111", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#facc15", "fillOpacity": 1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1.5}
+            ).addTo(map_97b0b93138d31f6d0f9a8b2523863622);
+        
+    
+            circle_marker_5f47018e50216ca306fa3cd9f0b53976.bindTooltip(
+                `<div>
+                     <b>Congress</b> @ Michigan<br>19 mph — Moderate
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_229ec1c97bc1607afbad879e44915c72 = L.circleMarker(
+                [41.8757590907, -87.6276277176],
+                {"bubblingMouseEvents": true, "color": "#111", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#facc15", "fillOpacity": 1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1.5}
+            ).addTo(map_97b0b93138d31f6d0f9a8b2523863622);
+        
+    
+            circle_marker_229ec1c97bc1607afbad879e44915c72.bindTooltip(
+                `<div>
+                     <b>Congress</b> @ State<br>19 mph — Moderate
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_182c3c18ea2e1691eb4d2f8ec21a7193 = L.marker(
+                [41.8758164926, -87.6259397503],
+                {
+}
+            ).addTo(map_97b0b93138d31f6d0f9a8b2523863622);
+        
+    
+            var div_icon_fab36320802592cc4e6b00e2279f849d = L.divIcon({
+  "html": "\u003cdiv style=\"\n                font-size:9px;font-weight:700;color:#fff;\n                white-space:nowrap;pointer-events:none;\n                text-shadow:0 0 4px #000,0 0 4px #000,0 0 4px #000;\"\u003e\n                Congress\n            \u003c/div\u003e",
+  "iconSize": [90, 16],
+  "iconAnchor": [45, -6],
+  "className": "empty",
+});
+        
+    
+                marker_182c3c18ea2e1691eb4d2f8ec21a7193.setIcon(div_icon_fab36320802592cc4e6b00e2279f849d);
+            
+    
+            var poly_line_0a35d49898540d41368704fe2c7f5df1 = L.polyline(
+                [[41.88447407, -87.62426376], [41.892571, -87.623997]],
+                {"bubblingMouseEvents": true, "color": "#facc15", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#facc15", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.95, "smoothFactor": 1.0, "stroke": true, "weight": 7}
+            ).addTo(map_97b0b93138d31f6d0f9a8b2523863622);
+        
+    
+            poly_line_0a35d49898540d41368704fe2c7f5df1.bindTooltip(
+                `<div>
+                     <b style='font-size:13px'>Michigan</b><br>Randolph → Ohio<br>Speed: <b>18 mph</b><br>Status: <b style='color:#facc15'>Moderate</b>
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_825b5c158ce22dd4473393a182ccb9bf = L.circleMarker(
+                [41.88447407, -87.62426376],
+                {"bubblingMouseEvents": true, "color": "#111", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#facc15", "fillOpacity": 1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1.5}
+            ).addTo(map_97b0b93138d31f6d0f9a8b2523863622);
+        
+    
+            circle_marker_825b5c158ce22dd4473393a182ccb9bf.bindTooltip(
+                `<div>
+                     <b>Michigan</b> @ Randolph<br>18 mph — Moderate
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_4dce5c9c670dd7457261dc1f347b669e = L.circleMarker(
+                [41.892571, -87.623997],
+                {"bubblingMouseEvents": true, "color": "#111", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#facc15", "fillOpacity": 1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1.5}
+            ).addTo(map_97b0b93138d31f6d0f9a8b2523863622);
+        
+    
+            circle_marker_4dce5c9c670dd7457261dc1f347b669e.bindTooltip(
+                `<div>
+                     <b>Michigan</b> @ Ohio<br>18 mph — Moderate
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_1a666234216ee785bb40a408e77b44f2 = L.marker(
+                [41.888522535, -87.62413038],
+                {
+}
+            ).addTo(map_97b0b93138d31f6d0f9a8b2523863622);
+        
+    
+            var div_icon_a695265b0339fc491844ec460ca5abdf = L.divIcon({
+  "html": "\u003cdiv style=\"\n                font-size:9px;font-weight:700;color:#fff;\n                white-space:nowrap;pointer-events:none;\n                text-shadow:0 0 4px #000,0 0 4px #000,0 0 4px #000;\"\u003e\n                Michigan\n            \u003c/div\u003e",
+  "iconSize": [90, 16],
+  "iconAnchor": [45, -6],
+  "className": "empty",
+});
+        
+    
+                marker_1a666234216ee785bb40a408e77b44f2.setIcon(div_icon_a695265b0339fc491844ec460ca5abdf);
+            
+    
+            var poly_line_4cb9e758289485b386b6a2722730a070 = L.polyline(
+                [[41.896514, -87.632709], [41.896635, -87.624241]],
+                {"bubblingMouseEvents": true, "color": "#4ade80", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#4ade80", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.95, "smoothFactor": 1.0, "stroke": true, "weight": 7}
+            ).addTo(map_97b0b93138d31f6d0f9a8b2523863622);
+        
+    
+            poly_line_4cb9e758289485b386b6a2722730a070.bindTooltip(
+                `<div>
+                     <b style='font-size:13px'>Chicago</b><br>LaSalle → Michigan<br>Speed: <b>29 mph</b><br>Status: <b style='color:#4ade80'>Free flow</b>
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_fd59bec4d37849b621738c82611170b7 = L.circleMarker(
+                [41.896514, -87.632709],
+                {"bubblingMouseEvents": true, "color": "#111", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#4ade80", "fillOpacity": 1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1.5}
+            ).addTo(map_97b0b93138d31f6d0f9a8b2523863622);
+        
+    
+            circle_marker_fd59bec4d37849b621738c82611170b7.bindTooltip(
+                `<div>
+                     <b>Chicago</b> @ LaSalle<br>29 mph — Free flow
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_25d96e8a62e98f66c5a698ad53651daa = L.circleMarker(
+                [41.896635, -87.624241],
+                {"bubblingMouseEvents": true, "color": "#111", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#4ade80", "fillOpacity": 1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1.5}
+            ).addTo(map_97b0b93138d31f6d0f9a8b2523863622);
+        
+    
+            circle_marker_25d96e8a62e98f66c5a698ad53651daa.bindTooltip(
+                `<div>
+                     <b>Chicago</b> @ Michigan<br>29 mph — Free flow
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_f2551dee9515bcb179b06b85f196a09c = L.marker(
+                [41.8965745, -87.62847500000001],
+                {
+}
+            ).addTo(map_97b0b93138d31f6d0f9a8b2523863622);
+        
+    
+            var div_icon_6233f31ef100918b15b1e1623679a90b = L.divIcon({
+  "html": "\u003cdiv style=\"\n                font-size:9px;font-weight:700;color:#fff;\n                white-space:nowrap;pointer-events:none;\n                text-shadow:0 0 4px #000,0 0 4px #000,0 0 4px #000;\"\u003e\n                Chicago\n            \u003c/div\u003e",
+  "iconSize": [90, 16],
+  "iconAnchor": [45, -6],
+  "className": "empty",
+});
+        
+    
+                marker_f2551dee9515bcb179b06b85f196a09c.setIcon(div_icon_6233f31ef100918b15b1e1623679a90b);
+            
+    
+            var poly_line_c771b16b51ef1eb721ddcdafc3954a68 = L.polyline(
+                [[41.878077, -87.636914], [41.87828, -87.624306]],
+                {"bubblingMouseEvents": true, "color": "#facc15", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#facc15", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.95, "smoothFactor": 1.0, "stroke": true, "weight": 7}
+            ).addTo(map_97b0b93138d31f6d0f9a8b2523863622);
+        
+    
+            poly_line_c771b16b51ef1eb721ddcdafc3954a68.bindTooltip(
+                `<div>
+                     <b style='font-size:13px'>Jackson</b><br>Wacker → Michigain<br>Speed: <b>24 mph</b><br>Status: <b style='color:#facc15'>Moderate</b>
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_a8c9e8afee58e3d777f8d348538b5f07 = L.circleMarker(
+                [41.878077, -87.636914],
+                {"bubblingMouseEvents": true, "color": "#111", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#facc15", "fillOpacity": 1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1.5}
+            ).addTo(map_97b0b93138d31f6d0f9a8b2523863622);
+        
+    
+            circle_marker_a8c9e8afee58e3d777f8d348538b5f07.bindTooltip(
+                `<div>
+                     <b>Jackson</b> @ Wacker<br>24 mph — Moderate
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_0628518d83277a0c662112dd7f134be4 = L.circleMarker(
+                [41.87828, -87.624306],
+                {"bubblingMouseEvents": true, "color": "#111", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#facc15", "fillOpacity": 1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1.5}
+            ).addTo(map_97b0b93138d31f6d0f9a8b2523863622);
+        
+    
+            circle_marker_0628518d83277a0c662112dd7f134be4.bindTooltip(
+                `<div>
+                     <b>Jackson</b> @ Michigain<br>24 mph — Moderate
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_5ad7ab5262f7f994a3cf65baf9937917 = L.marker(
+                [41.8781785, -87.63061],
+                {
+}
+            ).addTo(map_97b0b93138d31f6d0f9a8b2523863622);
+        
+    
+            var div_icon_d98de75f04b8c892ef19f0b90d6cf843 = L.divIcon({
+  "html": "\u003cdiv style=\"\n                font-size:9px;font-weight:700;color:#fff;\n                white-space:nowrap;pointer-events:none;\n                text-shadow:0 0 4px #000,0 0 4px #000,0 0 4px #000;\"\u003e\n                Jackson\n            \u003c/div\u003e",
+  "iconSize": [90, 16],
+  "iconAnchor": [45, -6],
+  "className": "empty",
+});
+        
+    
+                marker_5ad7ab5262f7f994a3cf65baf9937917.setIcon(div_icon_d98de75f04b8c892ef19f0b90d6cf843);
+            
+    
+            var poly_line_f6a25a1e0aed1203e15f5f00cd0b1004 = L.polyline(
+                [[41.896785, -87.620469], [41.891002, -87.620324]],
+                {"bubblingMouseEvents": true, "color": "#facc15", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#facc15", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.95, "smoothFactor": 1.0, "stroke": true, "weight": 7}
+            ).addTo(map_97b0b93138d31f6d0f9a8b2523863622);
+        
+    
+            poly_line_f6a25a1e0aed1203e15f5f00cd0b1004.bindTooltip(
+                `<div>
+                     <b style='font-size:13px'>Fairbanks</b><br>Chicago → Illinois<br>Speed: <b>22 mph</b><br>Status: <b style='color:#facc15'>Moderate</b>
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_f4466e809f97a16317966ebb3096c1af = L.circleMarker(
+                [41.896785, -87.620469],
+                {"bubblingMouseEvents": true, "color": "#111", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#facc15", "fillOpacity": 1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1.5}
+            ).addTo(map_97b0b93138d31f6d0f9a8b2523863622);
+        
+    
+            circle_marker_f4466e809f97a16317966ebb3096c1af.bindTooltip(
+                `<div>
+                     <b>Fairbanks</b> @ Chicago<br>22 mph — Moderate
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_8421baed7354d4f877b1cdc73ecbe4d0 = L.circleMarker(
+                [41.891002, -87.620324],
+                {"bubblingMouseEvents": true, "color": "#111", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#facc15", "fillOpacity": 1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1.5}
+            ).addTo(map_97b0b93138d31f6d0f9a8b2523863622);
+        
+    
+            circle_marker_8421baed7354d4f877b1cdc73ecbe4d0.bindTooltip(
+                `<div>
+                     <b>Fairbanks</b> @ Illinois<br>22 mph — Moderate
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_6a0addb6c35d4a9c65f45dec900e26c0 = L.marker(
+                [41.893893500000004, -87.6203965],
+                {
+}
+            ).addTo(map_97b0b93138d31f6d0f9a8b2523863622);
+        
+    
+            var div_icon_d0e3e2509d2773c30e1ab092ad1c2814 = L.divIcon({
+  "html": "\u003cdiv style=\"\n                font-size:9px;font-weight:700;color:#fff;\n                white-space:nowrap;pointer-events:none;\n                text-shadow:0 0 4px #000,0 0 4px #000,0 0 4px #000;\"\u003e\n                Fairbanks\n            \u003c/div\u003e",
+  "iconSize": [90, 16],
+  "iconAnchor": [45, -6],
+  "className": "empty",
+});
+        
+    
+                marker_6a0addb6c35d4a9c65f45dec900e26c0.setIcon(div_icon_d0e3e2509d2773c30e1ab092ad1c2814);
+            
+    
+            var poly_line_bcb0e8874043289cd18fbb1005258c67 = L.polyline(
+                [[41.884414, -87.620542], [41.891002, -87.620124]],
+                {"bubblingMouseEvents": true, "color": "#f87171", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#f87171", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.95, "smoothFactor": 1.0, "stroke": true, "weight": 7}
+            ).addTo(map_97b0b93138d31f6d0f9a8b2523863622);
+        
+    
+            poly_line_bcb0e8874043289cd18fbb1005258c67.bindTooltip(
+                `<div>
+                     <b style='font-size:13px'>Columbus</b><br>Randolph → Illinois<br>Speed: <b>17 mph</b><br>Status: <b style='color:#f87171'>Congested</b>
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_310406077a3c14f574a7e12f5295f53d = L.circleMarker(
+                [41.884414, -87.620542],
+                {"bubblingMouseEvents": true, "color": "#111", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#f87171", "fillOpacity": 1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1.5}
+            ).addTo(map_97b0b93138d31f6d0f9a8b2523863622);
+        
+    
+            circle_marker_310406077a3c14f574a7e12f5295f53d.bindTooltip(
+                `<div>
+                     <b>Columbus</b> @ Randolph<br>17 mph — Congested
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_96061abf05409c102816d832a826ce3a = L.circleMarker(
+                [41.891002, -87.620124],
+                {"bubblingMouseEvents": true, "color": "#111", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#f87171", "fillOpacity": 1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1.5}
+            ).addTo(map_97b0b93138d31f6d0f9a8b2523863622);
+        
+    
+            circle_marker_96061abf05409c102816d832a826ce3a.bindTooltip(
+                `<div>
+                     <b>Columbus</b> @ Illinois<br>17 mph — Congested
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_dc8db3dbad5de50e1597b57bc683eae6 = L.marker(
+                [41.887708, -87.620333],
+                {
+}
+            ).addTo(map_97b0b93138d31f6d0f9a8b2523863622);
+        
+    
+            var div_icon_0d27b74c1cf9b4d372507e40f007a212 = L.divIcon({
+  "html": "\u003cdiv style=\"\n                font-size:9px;font-weight:700;color:#fff;\n                white-space:nowrap;pointer-events:none;\n                text-shadow:0 0 4px #000,0 0 4px #000,0 0 4px #000;\"\u003e\n                Columbus\n            \u003c/div\u003e",
+  "iconSize": [90, 16],
+  "iconAnchor": [45, -6],
+  "className": "empty",
+});
+        
+    
+                marker_dc8db3dbad5de50e1597b57bc683eae6.setIcon(div_icon_0d27b74c1cf9b4d372507e40f007a212);
+            
+    
+            var poly_line_a91f32e6f091a01720ca15de4524deec = L.polyline(
+                [[41.891798492, -87.6202037576], [41.8917303986, -87.6241461501]],
+                {"bubblingMouseEvents": true, "color": "#4ade80", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#4ade80", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.95, "smoothFactor": 1.0, "stroke": true, "weight": 7}
+            ).addTo(map_97b0b93138d31f6d0f9a8b2523863622);
+        
+    
+            poly_line_a91f32e6f091a01720ca15de4524deec.bindTooltip(
+                `<div>
+                     <b style='font-size:13px'>Grand</b><br>Columbus → Michigan<br>Speed: <b>25 mph</b><br>Status: <b style='color:#4ade80'>Free flow</b>
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_d8488fe9f5018825bb7883c9df88d034 = L.circleMarker(
+                [41.891798492, -87.6202037576],
+                {"bubblingMouseEvents": true, "color": "#111", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#4ade80", "fillOpacity": 1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1.5}
+            ).addTo(map_97b0b93138d31f6d0f9a8b2523863622);
+        
+    
+            circle_marker_d8488fe9f5018825bb7883c9df88d034.bindTooltip(
+                `<div>
+                     <b>Grand</b> @ Columbus<br>25 mph — Free flow
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_34063a40f23125e14921b35199790e8c = L.circleMarker(
+                [41.8917303986, -87.6241461501],
+                {"bubblingMouseEvents": true, "color": "#111", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#4ade80", "fillOpacity": 1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1.5}
+            ).addTo(map_97b0b93138d31f6d0f9a8b2523863622);
+        
+    
+            circle_marker_34063a40f23125e14921b35199790e8c.bindTooltip(
+                `<div>
+                     <b>Grand</b> @ Michigan<br>25 mph — Free flow
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_d8d459486d366843bebc8c141ac3ce45 = L.marker(
+                [41.8917644453, -87.62217495384999],
+                {
+}
+            ).addTo(map_97b0b93138d31f6d0f9a8b2523863622);
+        
+    
+            var div_icon_a9e26960be225dcc840d9efc7b36c8ae = L.divIcon({
+  "html": "\u003cdiv style=\"\n                font-size:9px;font-weight:700;color:#fff;\n                white-space:nowrap;pointer-events:none;\n                text-shadow:0 0 4px #000,0 0 4px #000,0 0 4px #000;\"\u003e\n                Grand\n            \u003c/div\u003e",
+  "iconSize": [90, 16],
+  "iconAnchor": [45, -6],
+  "className": "empty",
+});
+        
+    
+                marker_d8d459486d366843bebc8c141ac3ce45.setIcon(div_icon_a9e26960be225dcc840d9efc7b36c8ae);
+            
+    
+            var poly_line_679103070ec0715c7123359977b7c718 = L.polyline(
+                [[41.8883032777, -87.6245761907], [41.8869508682, -87.627973493]],
+                {"bubblingMouseEvents": true, "color": "#f87171", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#f87171", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.95, "smoothFactor": 1.0, "stroke": true, "weight": 7}
+            ).addTo(map_97b0b93138d31f6d0f9a8b2523863622);
+        
+    
+            poly_line_679103070ec0715c7123359977b7c718.bindTooltip(
+                `<div>
+                     <b style='font-size:13px'>Wacker</b><br>Michigan → State<br>Speed: <b>17 mph</b><br>Status: <b style='color:#f87171'>Congested</b>
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_0e6b8786a6613cdede355f304ead7c69 = L.circleMarker(
+                [41.8883032777, -87.6245761907],
+                {"bubblingMouseEvents": true, "color": "#111", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#f87171", "fillOpacity": 1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1.5}
+            ).addTo(map_97b0b93138d31f6d0f9a8b2523863622);
+        
+    
+            circle_marker_0e6b8786a6613cdede355f304ead7c69.bindTooltip(
+                `<div>
+                     <b>Wacker</b> @ Michigan<br>17 mph — Congested
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_824f60908597af2f45852eb7b1b43ad6 = L.circleMarker(
+                [41.8869508682, -87.627973493],
+                {"bubblingMouseEvents": true, "color": "#111", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#f87171", "fillOpacity": 1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1.5}
+            ).addTo(map_97b0b93138d31f6d0f9a8b2523863622);
+        
+    
+            circle_marker_824f60908597af2f45852eb7b1b43ad6.bindTooltip(
+                `<div>
+                     <b>Wacker</b> @ State<br>17 mph — Congested
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_33df827b21e0c1900576f3fb89883a77 = L.marker(
+                [41.887627072949996, -87.62627484185],
+                {
+}
+            ).addTo(map_97b0b93138d31f6d0f9a8b2523863622);
+        
+    
+            var div_icon_fa011812f64eab6856d5e66841d7ffc5 = L.divIcon({
+  "html": "\u003cdiv style=\"\n                font-size:9px;font-weight:700;color:#fff;\n                white-space:nowrap;pointer-events:none;\n                text-shadow:0 0 4px #000,0 0 4px #000,0 0 4px #000;\"\u003e\n                Wacker\n            \u003c/div\u003e",
+  "iconSize": [90, 16],
+  "iconAnchor": [45, -6],
+  "className": "empty",
+});
+        
+    
+                marker_33df827b21e0c1900576f3fb89883a77.setIcon(div_icon_fa011812f64eab6856d5e66841d7ffc5);
+            
+    
+            var poly_line_37b80ac965cec75cafc3292ed7af499b = L.polyline(
+                [[41.8846520046, -87.6206419402], [41.8846086464, -87.6244501884]],
+                {"bubblingMouseEvents": true, "color": "#facc15", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#facc15", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.95, "smoothFactor": 1.0, "stroke": true, "weight": 7}
+            ).addTo(map_97b0b93138d31f6d0f9a8b2523863622);
+        
+    
+            poly_line_37b80ac965cec75cafc3292ed7af499b.bindTooltip(
+                `<div>
+                     <b style='font-size:13px'>Randolph</b><br>Columbus → Michigan<br>Speed: <b>20 mph</b><br>Status: <b style='color:#facc15'>Moderate</b>
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_42208691d03c14c179259722005654e6 = L.circleMarker(
+                [41.8846520046, -87.6206419402],
+                {"bubblingMouseEvents": true, "color": "#111", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#facc15", "fillOpacity": 1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1.5}
+            ).addTo(map_97b0b93138d31f6d0f9a8b2523863622);
+        
+    
+            circle_marker_42208691d03c14c179259722005654e6.bindTooltip(
+                `<div>
+                     <b>Randolph</b> @ Columbus<br>20 mph — Moderate
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_0696c30b4dbf9c68bb29355cace3b317 = L.circleMarker(
+                [41.8846086464, -87.6244501884],
+                {"bubblingMouseEvents": true, "color": "#111", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#facc15", "fillOpacity": 1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1.5}
+            ).addTo(map_97b0b93138d31f6d0f9a8b2523863622);
+        
+    
+            circle_marker_0696c30b4dbf9c68bb29355cace3b317.bindTooltip(
+                `<div>
+                     <b>Randolph</b> @ Michigan<br>20 mph — Moderate
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_c91a643582a4aa76ab0697f6d0858a20 = L.marker(
+                [41.8846303255, -87.6225460643],
+                {
+}
+            ).addTo(map_97b0b93138d31f6d0f9a8b2523863622);
+        
+    
+            var div_icon_3286645e57b22639c176a870d619fe90 = L.divIcon({
+  "html": "\u003cdiv style=\"\n                font-size:9px;font-weight:700;color:#fff;\n                white-space:nowrap;pointer-events:none;\n                text-shadow:0 0 4px #000,0 0 4px #000,0 0 4px #000;\"\u003e\n                Randolph\n            \u003c/div\u003e",
+  "iconSize": [90, 16],
+  "iconAnchor": [45, -6],
+  "className": "empty",
+});
+        
+    
+                marker_c91a643582a4aa76ab0697f6d0858a20.setIcon(div_icon_3286645e57b22639c176a870d619fe90);
+            
+    
+            var poly_line_c779e61d98346b40ba0bca75128b35a6 = L.polyline(
+                [[41.882109, -87.624366], [41.882014, -87.636891]],
+                {"bubblingMouseEvents": true, "color": "#facc15", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#facc15", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.95, "smoothFactor": 1.0, "stroke": true, "weight": 7}
+            ).addTo(map_97b0b93138d31f6d0f9a8b2523863622);
+        
+    
+            poly_line_c779e61d98346b40ba0bca75128b35a6.bindTooltip(
+                `<div>
+                     <b style='font-size:13px'>Madison</b><br>Michigan → Wacker<br>Speed: <b>18 mph</b><br>Status: <b style='color:#facc15'>Moderate</b>
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_0bb0249a3c08f832604452145a483c44 = L.circleMarker(
+                [41.882109, -87.624366],
+                {"bubblingMouseEvents": true, "color": "#111", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#facc15", "fillOpacity": 1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1.5}
+            ).addTo(map_97b0b93138d31f6d0f9a8b2523863622);
+        
+    
+            circle_marker_0bb0249a3c08f832604452145a483c44.bindTooltip(
+                `<div>
+                     <b>Madison</b> @ Michigan<br>18 mph — Moderate
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_351d6d4b619f5029acfe4a03bc471d98 = L.circleMarker(
+                [41.882014, -87.636891],
+                {"bubblingMouseEvents": true, "color": "#111", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#facc15", "fillOpacity": 1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1.5}
+            ).addTo(map_97b0b93138d31f6d0f9a8b2523863622);
+        
+    
+            circle_marker_351d6d4b619f5029acfe4a03bc471d98.bindTooltip(
+                `<div>
+                     <b>Madison</b> @ Wacker<br>18 mph — Moderate
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_632b7f605fe6e437edca6566e273160e = L.marker(
+                [41.8820615, -87.6306285],
+                {
+}
+            ).addTo(map_97b0b93138d31f6d0f9a8b2523863622);
+        
+    
+            var div_icon_ede095347b7153ba520aaf2499f83f6d = L.divIcon({
+  "html": "\u003cdiv style=\"\n                font-size:9px;font-weight:700;color:#fff;\n                white-space:nowrap;pointer-events:none;\n                text-shadow:0 0 4px #000,0 0 4px #000,0 0 4px #000;\"\u003e\n                Madison\n            \u003c/div\u003e",
+  "iconSize": [90, 16],
+  "iconAnchor": [45, -6],
+  "className": "empty",
+});
+        
+    
+                marker_632b7f605fe6e437edca6566e273160e.setIcon(div_icon_ede095347b7153ba520aaf2499f83f6d);
+            
+    
+            var poly_line_8cc575646d6b262453b2598b686e8296 = L.polyline(
+                [[41.883144306, -87.6370264614], [41.8831986058, -87.6244239148]],
+                {"bubblingMouseEvents": true, "color": "#f87171", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#f87171", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.95, "smoothFactor": 1.0, "stroke": true, "weight": 7}
+            ).addTo(map_97b0b93138d31f6d0f9a8b2523863622);
+        
+    
+            poly_line_8cc575646d6b262453b2598b686e8296.bindTooltip(
+                `<div>
+                     <b style='font-size:13px'>Washington</b><br>Wacker → Michigan<br>Speed: <b>17 mph</b><br>Status: <b style='color:#f87171'>Congested</b>
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_1a5d27c59a68b6c17d3f2a8c1a72529c = L.circleMarker(
+                [41.883144306, -87.6370264614],
+                {"bubblingMouseEvents": true, "color": "#111", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#f87171", "fillOpacity": 1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1.5}
+            ).addTo(map_97b0b93138d31f6d0f9a8b2523863622);
+        
+    
+            circle_marker_1a5d27c59a68b6c17d3f2a8c1a72529c.bindTooltip(
+                `<div>
+                     <b>Washington</b> @ Wacker<br>17 mph — Congested
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_260769105a1bd8943a2a024b68aabc0c = L.circleMarker(
+                [41.8831986058, -87.6244239148],
+                {"bubblingMouseEvents": true, "color": "#111", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#f87171", "fillOpacity": 1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1.5}
+            ).addTo(map_97b0b93138d31f6d0f9a8b2523863622);
+        
+    
+            circle_marker_260769105a1bd8943a2a024b68aabc0c.bindTooltip(
+                `<div>
+                     <b>Washington</b> @ Michigan<br>17 mph — Congested
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_1374afe9af8a6ed6216d751b2d266796 = L.marker(
+                [41.8831714559, -87.6307251881],
+                {
+}
+            ).addTo(map_97b0b93138d31f6d0f9a8b2523863622);
+        
+    
+            var div_icon_256359fd877f176c84ad64502e18c7c6 = L.divIcon({
+  "html": "\u003cdiv style=\"\n                font-size:9px;font-weight:700;color:#fff;\n                white-space:nowrap;pointer-events:none;\n                text-shadow:0 0 4px #000,0 0 4px #000,0 0 4px #000;\"\u003e\n                Washington\n            \u003c/div\u003e",
+  "iconSize": [90, 16],
+  "iconAnchor": [45, -6],
+  "className": "empty",
+});
+        
+    
+                marker_1374afe9af8a6ed6216d751b2d266796.setIcon(div_icon_256359fd877f176c84ad64502e18c7c6);
+            
+    
+            var poly_line_2774e97ce133bd2167a65459c6fd6310 = L.polyline(
+                [[41.891002, -87.620124], [41.896785, -87.620269]],
+                {"bubblingMouseEvents": true, "color": "#facc15", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#facc15", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.95, "smoothFactor": 1.0, "stroke": true, "weight": 7}
+            ).addTo(map_97b0b93138d31f6d0f9a8b2523863622);
+        
+    
+            poly_line_2774e97ce133bd2167a65459c6fd6310.bindTooltip(
+                `<div>
+                     <b style='font-size:13px'>Fairbanks</b><br>Illinois → Chicago<br>Speed: <b>23 mph</b><br>Status: <b style='color:#facc15'>Moderate</b>
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_0651e1a6990b7c199355080ac1efbd8e = L.circleMarker(
+                [41.891002, -87.620124],
+                {"bubblingMouseEvents": true, "color": "#111", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#facc15", "fillOpacity": 1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1.5}
+            ).addTo(map_97b0b93138d31f6d0f9a8b2523863622);
+        
+    
+            circle_marker_0651e1a6990b7c199355080ac1efbd8e.bindTooltip(
+                `<div>
+                     <b>Fairbanks</b> @ Illinois<br>23 mph — Moderate
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_8904cc9350c4d876abec856c4ce73cf4 = L.circleMarker(
+                [41.896785, -87.620269],
+                {"bubblingMouseEvents": true, "color": "#111", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#facc15", "fillOpacity": 1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1.5}
+            ).addTo(map_97b0b93138d31f6d0f9a8b2523863622);
+        
+    
+            circle_marker_8904cc9350c4d876abec856c4ce73cf4.bindTooltip(
+                `<div>
+                     <b>Fairbanks</b> @ Chicago<br>23 mph — Moderate
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_4e09965e08e4fb528a97120e893d4451 = L.marker(
+                [41.893893500000004, -87.62019649999999],
+                {
+}
+            ).addTo(map_97b0b93138d31f6d0f9a8b2523863622);
+        
+    
+            var div_icon_9570b952c614fb883581e99a89fafc91 = L.divIcon({
+  "html": "\u003cdiv style=\"\n                font-size:9px;font-weight:700;color:#fff;\n                white-space:nowrap;pointer-events:none;\n                text-shadow:0 0 4px #000,0 0 4px #000,0 0 4px #000;\"\u003e\n                Fairbanks\n            \u003c/div\u003e",
+  "iconSize": [90, 16],
+  "iconAnchor": [45, -6],
+  "className": "empty",
+});
+        
+    
+                marker_4e09965e08e4fb528a97120e893d4451.setIcon(div_icon_9570b952c614fb883581e99a89fafc91);
+            
+    
+            var poly_line_3db80b43ef9525f60db519843b138f5d = L.polyline(
+                [[41.886813, -87.628076], [41.875639, -87.627718]],
+                {"bubblingMouseEvents": true, "color": "#f87171", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#f87171", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.95, "smoothFactor": 1.0, "stroke": true, "weight": 7}
+            ).addTo(map_97b0b93138d31f6d0f9a8b2523863622);
+        
+    
+            poly_line_3db80b43ef9525f60db519843b138f5d.bindTooltip(
+                `<div>
+                     <b style='font-size:13px'>State</b><br>Wacker → Congress<br>Speed: <b>16 mph</b><br>Status: <b style='color:#f87171'>Congested</b>
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_991b0f5b72b30ee02851461da244b67b = L.circleMarker(
+                [41.886813, -87.628076],
+                {"bubblingMouseEvents": true, "color": "#111", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#f87171", "fillOpacity": 1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1.5}
+            ).addTo(map_97b0b93138d31f6d0f9a8b2523863622);
+        
+    
+            circle_marker_991b0f5b72b30ee02851461da244b67b.bindTooltip(
+                `<div>
+                     <b>State</b> @ Wacker<br>16 mph — Congested
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_4e5fd8156be4c8d31995955258455f3f = L.circleMarker(
+                [41.875639, -87.627718],
+                {"bubblingMouseEvents": true, "color": "#111", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#f87171", "fillOpacity": 1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1.5}
+            ).addTo(map_97b0b93138d31f6d0f9a8b2523863622);
+        
+    
+            circle_marker_4e5fd8156be4c8d31995955258455f3f.bindTooltip(
+                `<div>
+                     <b>State</b> @ Congress<br>16 mph — Congested
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_f94f7db0e47a8d16f214cdfaf24a4fe2 = L.marker(
+                [41.881226, -87.62789699999999],
+                {
+}
+            ).addTo(map_97b0b93138d31f6d0f9a8b2523863622);
+        
+    
+            var div_icon_e5600635d2461162978a58bb0b28f2b8 = L.divIcon({
+  "html": "\u003cdiv style=\"\n                font-size:9px;font-weight:700;color:#fff;\n                white-space:nowrap;pointer-events:none;\n                text-shadow:0 0 4px #000,0 0 4px #000,0 0 4px #000;\"\u003e\n                State\n            \u003c/div\u003e",
+  "iconSize": [90, 16],
+  "iconAnchor": [45, -6],
+  "className": "empty",
+});
+        
+    
+                marker_f94f7db0e47a8d16f214cdfaf24a4fe2.setIcon(div_icon_e5600635d2461162978a58bb0b28f2b8);
+            
+    
+            var poly_line_e7402c26ef23e1f8813a946c333e2f43 = L.polyline(
+                [[41.8869508682, -87.627973493], [41.8870664305, -87.6324828907]],
+                {"bubblingMouseEvents": true, "color": "#facc15", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#facc15", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.95, "smoothFactor": 1.0, "stroke": true, "weight": 7}
+            ).addTo(map_97b0b93138d31f6d0f9a8b2523863622);
+        
+    
+            poly_line_e7402c26ef23e1f8813a946c333e2f43.bindTooltip(
+                `<div>
+                     <b style='font-size:13px'>Wacker</b><br>State → LaSalle<br>Speed: <b>24 mph</b><br>Status: <b style='color:#facc15'>Moderate</b>
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_3c993f2768509edef38be4f6487910d0 = L.circleMarker(
+                [41.8869508682, -87.627973493],
+                {"bubblingMouseEvents": true, "color": "#111", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#facc15", "fillOpacity": 1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1.5}
+            ).addTo(map_97b0b93138d31f6d0f9a8b2523863622);
+        
+    
+            circle_marker_3c993f2768509edef38be4f6487910d0.bindTooltip(
+                `<div>
+                     <b>Wacker</b> @ State<br>24 mph — Moderate
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_1be68d60499ab14909f52a36dcb0ff4e = L.circleMarker(
+                [41.8870664305, -87.6324828907],
+                {"bubblingMouseEvents": true, "color": "#111", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#facc15", "fillOpacity": 1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1.5}
+            ).addTo(map_97b0b93138d31f6d0f9a8b2523863622);
+        
+    
+            circle_marker_1be68d60499ab14909f52a36dcb0ff4e.bindTooltip(
+                `<div>
+                     <b>Wacker</b> @ LaSalle<br>24 mph — Moderate
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_e1c46054b0addf0559a0712d196c7405 = L.marker(
+                [41.88700864935, -87.63022819185],
+                {
+}
+            ).addTo(map_97b0b93138d31f6d0f9a8b2523863622);
+        
+    
+            var div_icon_25a963ae1c92cc084e714f0ec979e1a1 = L.divIcon({
+  "html": "\u003cdiv style=\"\n                font-size:9px;font-weight:700;color:#fff;\n                white-space:nowrap;pointer-events:none;\n                text-shadow:0 0 4px #000,0 0 4px #000,0 0 4px #000;\"\u003e\n                Wacker\n            \u003c/div\u003e",
+  "iconSize": [90, 16],
+  "iconAnchor": [45, -6],
+  "className": "empty",
+});
+        
+    
+                marker_e1c46054b0addf0559a0712d196c7405.setIcon(div_icon_25a963ae1c92cc084e714f0ec979e1a1);
+            
+    
+            var poly_line_6d576f7cd035297221fca4f1f7c1a8ed = L.polyline(
+                [[41.896835, -87.624241], [41.896714, -87.632709]],
+                {"bubblingMouseEvents": true, "color": "#facc15", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#facc15", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.95, "smoothFactor": 1.0, "stroke": true, "weight": 7}
+            ).addTo(map_97b0b93138d31f6d0f9a8b2523863622);
+        
+    
+            poly_line_6d576f7cd035297221fca4f1f7c1a8ed.bindTooltip(
+                `<div>
+                     <b style='font-size:13px'>Chicago</b><br>Michigan → LaSalle<br>Speed: <b>20 mph</b><br>Status: <b style='color:#facc15'>Moderate</b>
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_dba7844e068ab1c4818bcfac99a37ea6 = L.circleMarker(
+                [41.896835, -87.624241],
+                {"bubblingMouseEvents": true, "color": "#111", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#facc15", "fillOpacity": 1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1.5}
+            ).addTo(map_97b0b93138d31f6d0f9a8b2523863622);
+        
+    
+            circle_marker_dba7844e068ab1c4818bcfac99a37ea6.bindTooltip(
+                `<div>
+                     <b>Chicago</b> @ Michigan<br>20 mph — Moderate
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_d266f000ecd7bbd59bc09b8c6bac08c3 = L.circleMarker(
+                [41.896714, -87.632709],
+                {"bubblingMouseEvents": true, "color": "#111", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#facc15", "fillOpacity": 1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1.5}
+            ).addTo(map_97b0b93138d31f6d0f9a8b2523863622);
+        
+    
+            circle_marker_d266f000ecd7bbd59bc09b8c6bac08c3.bindTooltip(
+                `<div>
+                     <b>Chicago</b> @ LaSalle<br>20 mph — Moderate
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_367b6e54b9d4088e4cf6e383a02a87dd = L.marker(
+                [41.89677450000001, -87.62847500000001],
+                {
+}
+            ).addTo(map_97b0b93138d31f6d0f9a8b2523863622);
+        
+    
+            var div_icon_ac25afdd5099aafa2c48c93e428401ef = L.divIcon({
+  "html": "\u003cdiv style=\"\n                font-size:9px;font-weight:700;color:#fff;\n                white-space:nowrap;pointer-events:none;\n                text-shadow:0 0 4px #000,0 0 4px #000,0 0 4px #000;\"\u003e\n                Chicago\n            \u003c/div\u003e",
+  "iconSize": [90, 16],
+  "iconAnchor": [45, -6],
+  "className": "empty",
+});
+        
+    
+                marker_367b6e54b9d4088e4cf6e383a02a87dd.setIcon(div_icon_ac25afdd5099aafa2c48c93e428401ef);
+            
+    
+            var poly_line_1c7a43d7eb5f251d08a955623552e358 = L.polyline(
+                [[41.892571, -87.624359], [41.88447407, -87.62465]],
+                {"bubblingMouseEvents": true, "color": "#facc15", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#facc15", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.95, "smoothFactor": 1.0, "stroke": true, "weight": 7}
+            ).addTo(map_97b0b93138d31f6d0f9a8b2523863622);
+        
+    
+            poly_line_1c7a43d7eb5f251d08a955623552e358.bindTooltip(
+                `<div>
+                     <b style='font-size:13px'>Michigan</b><br>Ohio → Randolph<br>Speed: <b>18 mph</b><br>Status: <b style='color:#facc15'>Moderate</b>
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_bc99419dd17df26d1efa2ffdd656aef1 = L.circleMarker(
+                [41.892571, -87.624359],
+                {"bubblingMouseEvents": true, "color": "#111", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#facc15", "fillOpacity": 1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1.5}
+            ).addTo(map_97b0b93138d31f6d0f9a8b2523863622);
+        
+    
+            circle_marker_bc99419dd17df26d1efa2ffdd656aef1.bindTooltip(
+                `<div>
+                     <b>Michigan</b> @ Ohio<br>18 mph — Moderate
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_8a9f77bc3bb6737d13b3418f57556617 = L.circleMarker(
+                [41.88447407, -87.62465],
+                {"bubblingMouseEvents": true, "color": "#111", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#facc15", "fillOpacity": 1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1.5}
+            ).addTo(map_97b0b93138d31f6d0f9a8b2523863622);
+        
+    
+            circle_marker_8a9f77bc3bb6737d13b3418f57556617.bindTooltip(
+                `<div>
+                     <b>Michigan</b> @ Randolph<br>18 mph — Moderate
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_6187470995310f42eba0ecc921a6074d = L.marker(
+                [41.888522535, -87.6245045],
+                {
+}
+            ).addTo(map_97b0b93138d31f6d0f9a8b2523863622);
+        
+    
+            var div_icon_405803958b544fb1b8161149f628eecd = L.divIcon({
+  "html": "\u003cdiv style=\"\n                font-size:9px;font-weight:700;color:#fff;\n                white-space:nowrap;pointer-events:none;\n                text-shadow:0 0 4px #000,0 0 4px #000,0 0 4px #000;\"\u003e\n                Michigan\n            \u003c/div\u003e",
+  "iconSize": [90, 16],
+  "iconAnchor": [45, -6],
+  "className": "empty",
+});
+        
+    
+                marker_6187470995310f42eba0ecc921a6074d.setIcon(div_icon_405803958b544fb1b8161149f628eecd);
+            
+    
+            var poly_line_a7f3e15535d01b9993286d8b3e4c33bb = L.polyline(
+                [[41.875639, -87.627518], [41.886813, -87.627876]],
+                {"bubblingMouseEvents": true, "color": "#f87171", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#f87171", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.95, "smoothFactor": 1.0, "stroke": true, "weight": 7}
+            ).addTo(map_97b0b93138d31f6d0f9a8b2523863622);
+        
+    
+            poly_line_a7f3e15535d01b9993286d8b3e4c33bb.bindTooltip(
+                `<div>
+                     <b style='font-size:13px'>State</b><br>Congress → Wacker<br>Speed: <b>17 mph</b><br>Status: <b style='color:#f87171'>Congested</b>
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_6566c21572ec4c14fc0bc98619b8406c = L.circleMarker(
+                [41.875639, -87.627518],
+                {"bubblingMouseEvents": true, "color": "#111", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#f87171", "fillOpacity": 1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1.5}
+            ).addTo(map_97b0b93138d31f6d0f9a8b2523863622);
+        
+    
+            circle_marker_6566c21572ec4c14fc0bc98619b8406c.bindTooltip(
+                `<div>
+                     <b>State</b> @ Congress<br>17 mph — Congested
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_89889050158253ddc0e2fe1077cd4965 = L.circleMarker(
+                [41.886813, -87.627876],
+                {"bubblingMouseEvents": true, "color": "#111", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#f87171", "fillOpacity": 1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 1.5}
+            ).addTo(map_97b0b93138d31f6d0f9a8b2523863622);
+        
+    
+            circle_marker_89889050158253ddc0e2fe1077cd4965.bindTooltip(
+                `<div>
+                     <b>State</b> @ Wacker<br>17 mph — Congested
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_cbcd8c81a64810280b6f467c604553d2 = L.marker(
+                [41.881226, -87.627697],
+                {
+}
+            ).addTo(map_97b0b93138d31f6d0f9a8b2523863622);
+        
+    
+            var div_icon_a6d0d9e1524950f0bf16de495a29d56a = L.divIcon({
+  "html": "\u003cdiv style=\"\n                font-size:9px;font-weight:700;color:#fff;\n                white-space:nowrap;pointer-events:none;\n                text-shadow:0 0 4px #000,0 0 4px #000,0 0 4px #000;\"\u003e\n                State\n            \u003c/div\u003e",
+  "iconSize": [90, 16],
+  "iconAnchor": [45, -6],
+  "className": "empty",
+});
+        
+    
+                marker_cbcd8c81a64810280b6f467c604553d2.setIcon(div_icon_a6d0d9e1524950f0bf16de495a29d56a);
+            
+</script>
+</html>
